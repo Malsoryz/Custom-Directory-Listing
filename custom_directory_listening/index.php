@@ -1,15 +1,14 @@
-<?php
-  include "RootRes/php/scandir.php";
-?>
+<?php include "RootRes/php/scandir.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Dokumen</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="RootRes/css/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="RootRes/css/reset.css" type="text/css" media="all" />
 </head>
 <body class="theme-light">
   <nav class="navbar etr-shadow cusborder-no-hover">
@@ -18,14 +17,22 @@
   </nav>
   <section class="indexlist">
     <?php
-      foreach ($dirs as $dir){
-        echo '<a href="'.$dir.'" class="item"><div class="item-container etr-shadow etr-corner cusborder"><h3>'.$dir.'<i class="flrght fa-regular fa-folder"></i></h3></div></a>';
-      }
-      foreach ($files as $file){
-        echo '<a href="'.$file.'" class="item"><div class="item-container etr-shadow etr-corner cusborder"><h3>'.$file.'<i class="flrght fa-regular fa-file"></i></h3></div></a>';
-      }
+      foreach ($items as $item) {
+        // Variable $icon akan berisi 'fa-folder' jika $item[1]
+        // berisi nilai true dan 'fa-file' jika false.
+        // $item[1] akan berisi boolean yang merupakan kembalian/return dari fungsi 'is_dir'.
+
+        $icon = ( $item[1] ) ? "fa-folder" : "fa-file";
+        echo <<< EOD
+          <a href="$item[0]" class="item">
+            <div class="item-container etr-shadow etr-corner cusborder">
+              <h3>$item[0]<i class="flrght fa-regular $icon"></i></h3>
+            </div>
+          </a>
+        EOD;
+      };
     ?>
   </section>
-  <script src="RootRes/javascript/script.js" type="text/javascript" charset="utf-8"></script>
+  <script src="RootRes/js/script.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
