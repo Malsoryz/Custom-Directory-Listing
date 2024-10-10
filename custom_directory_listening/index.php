@@ -17,10 +17,6 @@
   <section class="indexlist">
     <?php
       foreach ($items as $item) {
-        // Variable $icon akan berisi 'fa-folder' jika $item[1]
-        // berisi nilai true dan 'fa-file' jika false.
-        // $item[1] akan berisi boolean yang merupakan kembalian/return dari fungsi 'is_dir'.
-
         $icon = ( $item[1] ) ? "fa-folder" : "fa-file";
         echo <<< EOD
           <a href="$item[0]" class="item">

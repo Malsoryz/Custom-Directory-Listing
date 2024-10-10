@@ -1,13 +1,23 @@
 <?php
 
 $scfiles = scandir(".");
-$ignore = [
-  ".", "..", "index.php", "index.html", "RootRes"
-];
+$ignore = [".", "..", "index.php", "index.html", "RootRes"];
 
-$items = [];
+$dirs = [];
+$files = [];
+
 foreach ($scfiles as $scfile) {
-  if ( !in_array($scfile, $ignore) ) {
-    $items[] = [$scfile, is_dir($scfile)];
-  };
-};
+  if (!in_array($scfile, $ignore)) {
+    if (is_dir($scfile)) {
+      $dirs[] = [$scfile, true];
+    } else {
+      $files[] = [$scfile, false];
+    }
+  }
+}
+
+sort($dirs);
+sort($files);
+$items = array_merge($dirs, $files);
+
+?>
