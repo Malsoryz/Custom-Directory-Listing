@@ -4,7 +4,16 @@
   margin: 0;
 }
 
-.theme-light{
+.enable-theme:has(nav.navbar #theme-checkbox:checked){
+  --bg-page: #121212;
+  --bg-container: #121212;
+  --bg-container-hover: #1e1e1e;
+  --border-color-hover: rgba(255,255,255,0.65);
+  --text-col: #ffffff;
+  --item-text-col: rgba(255,255,255,0.5);
+  --item-text-col-hover: #ffffff;
+}
+.enable-theme{
   --bg-page: #f5f5f5;
   --bg-container: #f5f5f5;
   --bg-container-hover: #ffffff;
@@ -14,20 +23,10 @@
   --item-text-col-hover: #000000;
 }
 
-.theme-dark{
-  --bg-page: #121212;
-  --bg-container: #121212;
-  --bg-container-hover: #1e1e1e;
-  --border-color-hover: rgba(255,255,255,0.65);
-  --text-col: #ffffff;
-  --item-text-col: rgba(255,255,255,0.5);
-  --item-text-col-hover: #ffffff;
-}
-
 body{
   background-color: var(--bg-page);
   --border-color: rgba(255,255,255,0.1);
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .etr-shadow{
@@ -58,15 +57,14 @@ nav.navbar{
   justify-content: space-between;
   padding: 1rem;
   color: var(--text-col);
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
-.theme-btn{
-  background: none;
-  border: none;
+#theme-checkbox{
+  display: none;
+}
+#theme-label{
   font-size: 1.5rem;
-  color: var(--text-col);
-  opacity: 0.8;
 }
 
 .indexlist{
@@ -92,7 +90,7 @@ nav.navbar{
   width: 100%;
   padding: 1rem;
   background-color: var(--bg-container);
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .item-container:hover{
