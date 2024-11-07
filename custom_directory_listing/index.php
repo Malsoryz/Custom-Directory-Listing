@@ -19,16 +19,22 @@
   </nav>
   <section class="indexlist">
     <?php foreach ($items as $item):?>
-      <?php $icon = ( $item[1] ) ? "fa-folder" : "fa-file"?>
-        <a href="<?=$item[0]?>" class="item">
-          <div class="item-container etr-shadow etr-corner cusborder">
-            <h3>
-              <span class="files-label"><?=$item[0]?></span>
-              <i class="flrght fa-regular <?=$icon?>"></i>
-            </h3>
-          </div>
-        </a>
+      <?php require "RootRes/php/fileinfo.php" ?>
+      <a href="<?=$item[0]?>" class="item">
+        <div class="item-container etr-shadow etr-corner cusborder">
+          <span class="name"><?=$item[0]?></span>
+          <span class="size"><?=$count?></span>
+          <span class="date"><?=$format_last_modified?></span>
+          <i class="icon fa-regular <?=$icon?>"></i>
+        </div>
+      </a>
     <?php endforeach?>
   </section>
+  <script>
+    const checkbox = document.getElementById('theme-checkbox');
+    checkbox.checked = localStorage.getItem('themeCheckbox') === 'checked';
+    checkbox.onchange = () => localStorage.setItem('themeCheckbox', checkbox.checked ? 'checked' : 'unchecked');
+    window.onpageshow = e => e.persisted && location.reload();
+  </script>
 </body>
 </html>
