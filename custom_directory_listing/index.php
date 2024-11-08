@@ -5,12 +5,7 @@ $items = [];
 foreach (listdir(".") as $path) {
   $items[] = file_info($path);
 }
-
-echo "<pre>";
-var_dump($items);
-echo "</pre>";
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +28,7 @@ echo "</pre>";
     </label>
   </nav>
 
-  <section>
+  <section class="indexlist">
     <?php foreach ($items as $i) : extract($i) ?>
       <a href="<?= $name ?>" class="item">
         <div class="item-container etr-shadow etr-corner cusborder">
