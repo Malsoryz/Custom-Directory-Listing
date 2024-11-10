@@ -5,6 +5,7 @@ $items = [];
 foreach (listdir(".") as $path) {
   $items[] = file_info($path);
 }
+
 ?>
 
 <!DOCTYPE html>
