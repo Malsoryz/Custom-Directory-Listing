@@ -18,7 +18,7 @@ function listdir(string $path = ".", array $ignore = []) : array {
   return array_merge($dirs, $files);
 }
 
-function size(string $path, int $decimals = 1) : string {
+function size(string $path, int $decimals = 2) : string {
   $sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
   $bytes = filesize($path);
   $factor = floor((strlen($bytes) - 1) / 3);
