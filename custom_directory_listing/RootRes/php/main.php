@@ -10,7 +10,7 @@ function listdir(string $path = ".", array $ignore = []) : array {
   foreach ($srcfiles as $item) {
     if (!in_array($item, $ignore)) {
 
-      is_dir($item) ? $dirs[] = $item : $files[] = $item;
+      is_dir("$path/$item") ? $dirs[] = "$path/$item" : $files[] = "$path/$item";
 
     };
   };
@@ -28,7 +28,7 @@ function size(string $path, int $decimals = 1) : string {
 
 function file_info(string $path) : array {
   return [
-    "name" => $path,
+    "name" => basename($path),
     "icon" => (is_dir($path)) ? "fa-folder" : "fa-file",
     "modified" => date("d/m/y", filemtime($path)),
     "count" => (is_dir($path)) ? count(listdir($path)) . " items" : size($path)

@@ -2,7 +2,7 @@
 require "RootRes/php/main.php";
 
 $items = [];
-foreach (listdir(".") as $path) {
+foreach (listdir($_GET["path"] ?? ".") as $path) {
   $items[] = file_info($path);
 }
 
@@ -31,7 +31,7 @@ foreach (listdir(".") as $path) {
 
   <section class="indexlist">
     <?php foreach ($items as $i) : extract($i) ?>
-      <a href="<?= $name ?>" class="item">
+      <a href="" class="item">
         <div class="item-container etr-shadow etr-corner cusborder">
           <span class="name"><?= $name ?></span>
           <span class="size"><?= $count ?></span>
