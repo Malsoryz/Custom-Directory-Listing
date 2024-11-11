@@ -18,12 +18,15 @@ function listdir(string $path = ".", array $ignore = []) : array {
   return array_merge($dirs, $files);
 }
 
-function size(string $path, int $decimals = 2) : string {
+function size(string $path) : string {
   $sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
   $bytes = filesize($path);
-  $factor = floor((strlen($bytes) - 1) / 3);
-
-  return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . " " . $sizes[$factor];
+  $factor = 0;
+  while ($bytes >= 1024 && $factor < count($sizes) - 1) {
+      $bytes /= 1024;
+      $factor++;
+  }
+  return round($bytes, 2).$sizes[$factor];
 }
 
 function file_info(string $path) : array {
