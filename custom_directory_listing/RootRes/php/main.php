@@ -31,6 +31,7 @@ function file_info(string $path) : array {
     "name" => basename($path),
     "icon" => (is_dir($path)) ? "fa-folder" : "fa-file",
     "modified" => date("d/m/y", filemtime($path)),
-    "count" => (is_dir($path)) ? count(listdir($path)) . " items" : size($path)
+    "count" => (is_dir($path)) ? count(listdir($path)) . " items" : size($path),
+    "link" => (is_dir($path)) ? "?path=" . $path : $path
   ];
 };

@@ -31,7 +31,7 @@ foreach (listdir($_GET["path"] ?? ".") as $path) {
 
   <section class="indexlist">
     <?php foreach ($items as $i) : extract($i) ?>
-      <a href="" class="item">
+      <a href="<?= $link ?>" class="item">
         <div class="item-container etr-shadow etr-corner cusborder">
           <span class="name"><?= $name ?></span>
           <span class="size"><?= $count ?></span>
