@@ -80,6 +80,7 @@ nav.navbar {
 .item {
   color: var(--item-text-col);
   text-decoration: none;
+  transition: 0.3s;
 }
 
 .item:hover {
@@ -95,6 +96,7 @@ nav.navbar {
   display: grid;
   grid-template-columns: 7fr 2fr 2fr auto;
   column-gap: 0.5rem;
+  transition: 0.3s;
 }
 
 .name,
@@ -110,20 +112,20 @@ nav.navbar {
 .name {
   justify-self: start;
   align-self: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 .size,
 .date {
   place-self: center;
-  font-size: 1.25rem;
+  font-size: 0.82rem;
 }
 
 .icon {
   justify-self: end;
   align-self: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   width: 1.5rem;
   text-align: center;
