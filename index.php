@@ -1,7 +1,6 @@
 <?php
 require "RootRes/php/main.php";
 
-$items = [];
 foreach (listdir($_GET["path"] ?? ".") as $path) {
   $items[] = file_info($path);
 }

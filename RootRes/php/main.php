@@ -1,18 +1,17 @@
 <?php
 
-function listdir(string $path = ".", array $ignore = []) : array {
+function listdir(string $path = ".", bool $show_hidden = false, array $ignore = []) : array {
   $dirs = $files = [];
   $srcfiles = scandir($path);
-  foreach ($srcfiles as $item) {
-    if (substr($item, 0, 1) === '.') {
-      $ignore[] = $item;
-    }
-  }
 
   foreach ($srcfiles as $item) {
-    if (!in_array($item, $ignore)) {
-      is_dir("$path/$item") ? $dirs[] = "$path/$item" : $files[] = "$path/$item";
-    };
+    if (
+      ( !$show_hidden && substr($item, 0, 1) === '.') ||
+      in_array($item, $ignore)
+    ) continue;
+
+    is_dir("$path/$item") ? $dirs[] = "$path/$item" : $files[] = "$path/$item";
+
   };
 
   return array_merge($dirs, $files);
@@ -22,25 +21,23 @@ function size(string $path) : string {
   $sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
   $bytes = filesize($path);
   $factor = 0;
+
   while ($bytes >= 1024 && $factor < count($sizes) - 1) {
-      $bytes /= 1024;
-      $factor++;
+    $bytes /= 1024;
+    $factor++;
   }
-  return round($bytes, 2).$sizes[$factor];
+
+  return round($bytes, 2) . $sizes[$factor];
 }
 
 function path(string $path) : string {
-  if (!is_dir($path)) {
-    return $path;
-  }
+  if (!is_dir($path)) return $path;
+
   $index = ['index.html', 'index.php'];
-  $findindex = scandir($path);
-  $hasindex = array_intersect($index, $findindex);
+  $hasindex = array_intersect($index, scandir($path));
 
   return $hasindex ? $path : "?path=" . $path;
 }
-
-
 
 function file_info(string $path) : array {
   return [
